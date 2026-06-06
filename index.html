@@ -31,7 +31,7 @@
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{font-family:"Noto Sans","Noto Sans SC",-apple-system,sans-serif;color:var(--t1);background:var(--navy);font-size:15px;line-height:1.8;overflow-x:hidden;}
+body{font-family:"Noto Sans","Noto Sans SC",-apple-system,sans-serif;color:var(--t1);background:var(--w);font-size:15px;line-height:1.8;overflow-x:hidden;}
 
 /* TICKER */
 .ticker{background:#000;padding:0.45rem 0;overflow:hidden;border-bottom:1px solid rgba(255,255,255,0.04);position:sticky;top:0;z-index:201;}
@@ -47,8 +47,11 @@ body{font-family:"Noto Sans","Noto Sans SC",-apple-system,sans-serif;color:var(-
 .ts{color:#1e293b;font-size:0.6rem;}
 
 /* HEADER */
-header{background:rgba(6,13,31,0);backdrop-filter:blur(0px);-webkit-backdrop-filter:blur(0px);border-bottom:1px solid rgba(255,255,255,0);padding:1.2rem 1.5rem;position:sticky;top:2.3rem;z-index:200;transition:all 0.4s ease;}
-header.scrolled{background:rgba(6,13,31,0.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06);padding:0.5rem 1.5rem;box-shadow:0 2px 20px rgba(0,0,0,0.3);}
+header{background:rgba(255,255,255,0);backdrop-filter:blur(0px);-webkit-backdrop-filter:blur(0px);border-bottom:1px solid rgba(0,0,0,0);padding:1.2rem 1.5rem;position:sticky;top:2.3rem;z-index:200;transition:all 0.4s ease;}
+header.scrolled{background:rgba(255,255,255,0.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,0.06);padding:0.5rem 1.5rem;box-shadow:0 2px 20px rgba(0,0,0,0.08);}
+header.scrolled .logo-text{color:var(--t1);}
+header.scrolled nav a{color:var(--t2);}
+header.scrolled nav a:hover{color:var(--g);}
 .hd{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem;}
 .logo{display:flex;align-items:center;gap:0.5rem;text-decoration:none;}
 .logo img{height:30px;width:auto;transition:height 0.3s;}
@@ -64,37 +67,45 @@ nav a:hover{color:var(--g);}
 
 /* HERO — Magazine style, full bleed */
 .hero{min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;padding:0;}
-.hero-bg{position:absolute;inset:0;background:linear-gradient(160deg,#000 0%,#060d1f 40%,#0a2818 100%);}
-.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(16,185,129,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(16,185,129,0.04) 1px,transparent 1px);background-size:60px 60px;}
-.hero-glow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(16,185,129,0.15) 0%,transparent 70%);top:-100px;right:-100px;pointer-events:none;}
-.hero-glow2{position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(59,130,246,0.08) 0%,transparent 70%);bottom:0;left:-50px;pointer-events:none;}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(160deg,#e8fdf5 0%,#f0fffe 35%,#e6f9f5 70%,#edfcf7 100%);}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(16,185,129,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(16,185,129,0.08) 1px,transparent 1px);background-size:50px 50px;}
+.hero-glow{position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(16,185,129,0.25) 0%,transparent 65%);top:-150px;right:-150px;pointer-events:none;animation:glowPulse 4s ease-in-out infinite;}
+.hero-glow2{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(6,182,212,0.15) 0%,transparent 65%);bottom:-50px;left:-100px;pointer-events:none;animation:glowPulse 4s ease-in-out infinite 2s;}
 .hero-content{position:relative;z-index:2;padding:3rem 1.5rem 4rem;max-width:1100px;margin:0 auto;width:100%;}
 .hero-eyebrow{display:inline-flex;align-items:center;gap:0.6rem;margin-bottom:2rem;}
 .hero-dot{width:8px;height:8px;background:var(--g);border-radius:50%;box-shadow:0 0 10px var(--g);animation:breathe 2s ease-in-out infinite;}
 @keyframes breathe{0%,100%{box-shadow:0 0 6px var(--g)}50%{box-shadow:0 0 20px var(--g),0 0 40px rgba(16,185,129,0.3)}}
+@keyframes glowPulse{0%,100%{transform:scale(1);opacity:0.8}50%{transform:scale(1.1);opacity:1}}
+@keyframes floatBadge{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+/* Floating stat badges in hero */
+.hero-float{position:absolute;z-index:3;background:white;border-radius:12px;padding:0.7rem 1rem;box-shadow:0 8px 24px rgba(0,0,0,0.08);border:1px solid rgba(16,185,129,0.2);display:flex;align-items:center;gap:0.6rem;}
+.hero-float-1{top:20%;right:5%;animation:floatBadge 3s ease-in-out infinite;}
+.hero-float-2{top:40%;right:2%;animation:floatBadge 3s ease-in-out infinite 1.5s;}
+.hero-float-n{font-size:1.1rem;font-weight:800;color:var(--g);}
+.hero-float-l{font-size:0.7rem;color:var(--t2);font-weight:500;}
+@media(max-width:640px){.hero-float{display:none;}}
 .hero-eyebrow-text{font-size:0.75rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--g);}
-.hero h1{font-size:clamp(2.8rem,8vw,5.5rem);font-weight:800;color:white;line-height:1.05;letter-spacing:-0.03em;margin-bottom:1.5rem;}
+.hero h1{font-size:clamp(2.8rem,8vw,5.5rem);font-weight:800;color:var(--t1);line-height:1.05;letter-spacing:-0.03em;margin-bottom:1.5rem;}
 .hero h1 em{font-style:normal;color:var(--g);}
-.hero h1 .line2{display:block;color:#94a3b8;font-size:0.55em;font-weight:400;letter-spacing:-0.01em;margin-top:0.3rem;}
+.hero h1 .line2{display:block;color:var(--t2);font-size:0.55em;font-weight:500;letter-spacing:-0.01em;margin-top:0.3rem;}
 .hero-sub{font-size:1rem;color:#475569;max-width:500px;line-height:1.8;margin-bottom:3rem;}
-.hero-nums{display:flex;gap:0;border:1px solid rgba(255,255,255,0.07);border-radius:14px;overflow:hidden;background:rgba(255,255,255,0.02);max-width:520px;backdrop-filter:blur(10px);}
-.hero-num{flex:1;padding:1.2rem 0.8rem;text-align:center;border-right:1px solid rgba(255,255,255,0.06);}
+.hero-nums{display:flex;gap:0;border:1px solid rgba(16,185,129,0.25);border-radius:14px;overflow:hidden;background:rgba(255,255,255,0.75);max-width:520px;backdrop-filter:blur(10px);}
+.hero-num{flex:1;padding:1.2rem 0.8rem;text-align:center;border-right:1px solid rgba(16,185,129,0.15);}
 .hero-num:last-child{border-right:none;}
 .hero-num-n{font-size:1.4rem;font-weight:800;color:var(--g);line-height:1;}
-.hero-num-l{font-size:0.68rem;color:#475569;margin-top:0.3rem;letter-spacing:0.02em;}
-.hero-scroll{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:0.4rem;color:#334155;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;animation:bounce 2s ease-in-out infinite;}
+.hero-num-l{font-size:0.68rem;color:var(--t2);margin-top:0.3rem;letter-spacing:0.02em;}
+.hero-scroll{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:0.4rem;color:var(--g);font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;animation:bounce 2s ease-in-out infinite;}
 @keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
-.scroll-line{width:1px;height:30px;background:linear-gradient(to bottom,transparent,#334155);}
+.scroll-line{width:1px;height:30px;background:linear-gradient(to bottom,transparent,var(--g));}
 @media(max-width:480px){.hero h1{font-size:2.8rem;}.hero-nums{flex-wrap:wrap;}.hero-num{min-width:50%;}}
 
 /* SECTION BASE */
 .sec{padding:5rem 1.5rem;}
 .sec-inner{max-width:1100px;margin:0 auto;}
-.sec-white{background:white;}
-.sec-light{background:var(--f);}
+.sec-white{background:white;} .sec-light{background:#fafafa;} #suria{background:white;} #atap{background:#fafafa;} #cases{background:white;} #faq{background:#fafafa;}
 .sec-dark{background:var(--navy);}
-.sec-darker{background:#000;}
-.sec-mid{background:var(--mid);}
+.sec-darker{background:#0a1628;}
+.sec-mid{background:#f0fdf4;}
 
 /* LABEL + TITLE */
 .label{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1rem;}
@@ -113,14 +124,14 @@ nav a:hover{color:var(--g);}
 .story-left{position:sticky;top:6rem;}
 .story-num{font-size:5rem;font-weight:800;color:rgba(16,185,129,0.12);line-height:1;margin-bottom:-1rem;}
 .story-tag{font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--g);margin-bottom:0.5rem;}
-.story-title{font-size:1.5rem;font-weight:800;color:white;line-height:1.2;margin-bottom:1rem;}
-.story-desc{font-size:0.88rem;color:#475569;line-height:1.8;}
-.story-right{display:flex;flex-direction:column;gap:1px;background:rgba(255,255,255,0.04);border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,0.06);}
-.story-row{display:flex;align-items:center;padding:1.2rem 1.5rem;gap:1.2rem;background:rgba(255,255,255,0.02);transition:background 0.2s;}
-.story-row:hover{background:rgba(16,185,129,0.05);}
+.story-title{font-size:1.5rem;font-weight:800;color:var(--t1);line-height:1.2;margin-bottom:1rem;}
+.story-desc{font-size:0.88rem;color:var(--t2);line-height:1.8;}
+.story-right{display:flex;flex-direction:column;gap:1px;background:#e2e8f0;border-radius:16px;overflow:hidden;border:1px solid #e2e8f0;}
+.story-row{display:flex;align-items:center;padding:1.2rem 1.5rem;gap:1.2rem;background:white;transition:background 0.2s;}
+.story-row:hover{background:#f0fdf4;}
 .story-row-icon{font-size:1.2rem;flex-shrink:0;width:36px;text-align:center;}
-.story-row-label{font-size:0.78rem;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.2rem;}
-.story-row-val{font-size:0.95rem;font-weight:600;color:white;}
+.story-row-label{font-size:0.78rem;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.2rem;}
+.story-row-val{font-size:0.95rem;font-weight:600;color:var(--t1);}
 .story-row-val strong{color:var(--g);}
 @media(max-width:768px){.story{grid-template-columns:1fr;gap:2rem;}.story-left{position:static;}}
 
@@ -164,7 +175,7 @@ nav a:hover{color:var(--g);}
 .tl-item:last-child{padding-bottom:0;}
 .tl-dot{position:absolute;left:-2.4rem;top:0.2rem;width:10px;height:10px;border-radius:50%;background:var(--g);box-shadow:0 0 10px rgba(16,185,129,0.5);}
 .tl-step{font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--g);margin-bottom:0.3rem;}
-.tl-title{font-size:1rem;font-weight:700;color:white;margin-bottom:0.4rem;}
+.tl-title{font-size:1rem;font-weight:700;color:var(--t1);margin-bottom:0.4rem;}
 .tl-desc{font-size:0.85rem;color:#475569;line-height:1.7;}
 
 /* MAGAZINE STAT STRIP */
@@ -217,11 +228,11 @@ nav a:hover{color:var(--g);}
 .faq-item.open .faq-a{display:block;}
 
 /* SPOWER — Dark magazine */
-.adv-list{display:flex;flex-direction:column;gap:1px;background:rgba(255,255,255,0.04);border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,0.06);}
-.adv-row{display:flex;align-items:flex-start;gap:1.2rem;padding:1.3rem 1.5rem;background:var(--navy2);transition:background 0.2s;}
-.adv-row:hover{background:rgba(16,185,129,0.04);}
+.adv-list{display:flex;flex-direction:column;gap:0;background:#f1f5f9;border-radius:16px;overflow:hidden;border:1px solid #e2e8f0;}
+.adv-row{display:flex;align-items:flex-start;gap:1.2rem;padding:1.3rem 1.5rem;background:white;transition:background 0.2s;border-bottom:1px solid #f1f5f9;}
+.adv-row:hover{background:#f0fdf4;}
 .adv-icon{font-size:1.2rem;flex-shrink:0;width:32px;text-align:center;margin-top:0.1rem;}
-.adv-body strong{display:block;font-size:0.9rem;color:white;font-weight:700;margin-bottom:0.25rem;}
+.adv-body strong{display:block;font-size:0.9rem;color:var(--t1);font-weight:700;margin-bottom:0.25rem;}
 .adv-body span{font-size:0.82rem;color:#334155;line-height:1.6;}
 
 /* COMPARE */
@@ -253,20 +264,20 @@ nav a:hover{color:var(--g);}
 .area-wrap{border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,0.06);}
 .area-top{background:linear-gradient(135deg,#022c1e,#043d28);padding:2rem 2rem 1.5rem;}
 .area-top-title{font-size:1.2rem;font-weight:800;color:white;margin-bottom:0.3rem;}
-.area-top-sub{font-size:0.83rem;color:rgba(255,255,255,0.35);}
+.area-top-sub{font-size:0.83rem;color:rgba(255,255,255,0.6);}
 .area-states{display:grid;grid-template-columns:1fr 1px 1fr;background:var(--navy2);}
 .area-state{padding:2rem;}
 .area-flag{font-size:1.8rem;margin-bottom:0.5rem;}
 .area-name{font-size:1.3rem;font-weight:800;color:white;margin-bottom:0.5rem;}
 .area-cities{font-size:0.8rem;color:#334155;line-height:1.9;}
 .area-div{background:rgba(255,255,255,0.05);margin:1.5rem 0;}
-.area-foot{background:#000;padding:1.2rem 2rem;display:flex;align-items:center;gap:0.5rem;}
+.area-foot{background:#f8fafc;padding:1.2rem 2rem;display:flex;align-items:center;gap:0.5rem;}
 .area-foot-dot{width:6px;height:6px;background:var(--g);border-radius:50%;box-shadow:0 0 6px var(--g);flex-shrink:0;}
-.area-foot strong{font-size:0.85rem;color:#64748b;}
+.area-foot strong{font-size:0.85rem;color:var(--gd);}
 @media(max-width:480px){.area-states{grid-template-columns:1fr;}.area-div{width:100%;height:1px;margin:0;}}
 
 /* CTA */
-.cta-sec{background:#000;padding:6rem 1.5rem;text-align:center;position:relative;overflow:hidden;}
+.cta-sec{background:var(--navy);padding:6rem 1.5rem;text-align:center;position:relative;overflow:hidden;}
 .cta-sec::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 100%,rgba(16,185,129,0.1) 0%,transparent 70%);}
 .cta-in{position:relative;max-width:560px;margin:0 auto;}
 .cta-sec h2{font-size:clamp(1.8rem,4vw,2.5rem);font-weight:800;color:white;letter-spacing:-0.02em;margin-bottom:1rem;}
@@ -308,9 +319,79 @@ footer{background:#000;border-top:1px solid #0a0a0a;padding:3rem 1.5rem 1.5rem;}
 [data-lang="zh"]:not(.hidden){display:inline;}
 
 @media print{.wa,header{display:none;}}
+        /* ===== SCROLL PROGRESS BAR ===== */
+        .scroll-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:linear-gradient(90deg,var(--g),#3b82f6);z-index:9999;transition:width 0.1s linear;border-radius:0 2px 2px 0;}
+
+        /* ===== SCROLL ANIMATIONS ===== */
+        .reveal{opacity:0;transform:translateY(40px);transition:opacity 0.7s ease,transform 0.7s ease;}
+        .reveal.visible{opacity:1;transform:translateY(0);}
+        .reveal-left{opacity:0;transform:translateX(-40px);transition:opacity 0.7s ease,transform 0.7s ease;}
+        .reveal-left.visible{opacity:1;transform:translateX(0);}
+        .reveal-right{opacity:0;transform:translateX(40px);transition:opacity 0.7s ease,transform 0.7s ease;}
+        .reveal-right.visible{opacity:1;transform:translateX(0);}
+        .reveal-scale{opacity:0;transform:scale(0.92);transition:opacity 0.6s ease,transform 0.6s ease;}
+        .reveal-scale.visible{opacity:1;transform:scale(1);}
+        .delay-1{transition-delay:0.1s;}
+        .delay-2{transition-delay:0.2s;}
+        .delay-3{transition-delay:0.3s;}
+        .delay-4{transition-delay:0.4s;}
+
+        /* ===== ENHANCED WA BUTTON ===== */
+        .wa{position:fixed;bottom:1.8rem;left:1rem;z-index:999;opacity:0;transform:translateY(30px) scale(0.7);transition:opacity 0.5s cubic-bezier(0.34,1.56,0.64,1),transform 0.5s cubic-bezier(0.34,1.56,0.64,1);pointer-events:none;}
+        .wa.show{opacity:1;transform:translateY(0) scale(1);pointer-events:all;}
+        .wa-bubble{display:flex;align-items:center;gap:0.6rem;background:linear-gradient(135deg,#25d366 0%,#128c7e 100%);border-radius:50px;padding:0.45rem 0.85rem 0.45rem 0.45rem;box-shadow:0 4px 16px rgba(37,211,102,0.4),0 0 0 0 rgba(37,211,102,0.4);cursor:pointer;text-decoration:none;transition:all 0.3s;animation:waBounce 3s ease-in-out infinite 2s;}
+        @keyframes waBounce{0%,100%{box-shadow:0 4px 16px rgba(37,211,102,0.4),0 0 0 0 rgba(37,211,102,0.3)}50%{box-shadow:0 6px 24px rgba(37,211,102,0.5),0 0 0 8px rgba(37,211,102,0)}}
+        .wa-bubble:hover{box-shadow:0 8px 28px rgba(37,211,102,0.55);transform:translateY(-3px) scale(1.04);animation:none;}
+        .wa-icon{width:28px;height:28px;background:rgba(255,255,255,0.25);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+        .wa-label{color:white;font-size:0.73rem;font-weight:700;white-space:nowrap;letter-spacing:0.02em;}
+        .wa-pulse{position:absolute;top:-3px;right:-3px;width:11px;height:11px;background:#ef4444;border-radius:50%;border:2px solid white;animation:wapulse 1.8s ease-in-out infinite;}
+        @keyframes wapulse{0%{transform:scale(1);opacity:1}60%{transform:scale(1.4);opacity:0.7}100%{transform:scale(1);opacity:1}}
+        /* Mini mode */
+        .wa.mini .wa-label{max-width:0;overflow:hidden;opacity:0;padding:0;transition:all 0.4s ease;}
+        .wa.mini .wa-bubble{padding:0.5rem;border-radius:50%;width:40px;height:40px;justify-content:center;gap:0;}
+        .wa.mini .wa-icon{width:100%;height:100%;background:none;}
+        .wa.mini{bottom:1.5rem;left:0.8rem;}
+
+        /* ===== BACK TO TOP ===== */
+        .back-top{position:fixed;bottom:2rem;right:1.2rem;width:44px;height:44px;background:white;border:2px solid #e2e8f0;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:998;opacity:0;transform:translateY(10px);transition:all 0.3s;box-shadow:0 4px 12px rgba(0,0,0,0.08);color:var(--t2);font-size:1.1rem;}
+        .back-top.show{opacity:1;transform:translateY(0);}
+        .back-top:hover{background:var(--g);border-color:var(--g);color:white;transform:translateY(-3px);}
+
+        /* ===== COUNTER ANIMATION ===== */
+        .count-num{display:inline-block;}
+
+        /* ===== HERO ANIMATION ===== */
+        .hero-eyebrow{animation:fadeDown 0.8s ease 0.2s both;}
+        .hero h1{animation:fadeDown 0.8s ease 0.4s both;}
+        .hero-sub{animation:fadeDown 0.8s ease 0.6s both;}
+        .hero-nums{animation:fadeDown 0.8s ease 0.8s both;}
+        .hero-scroll{animation:fadeDown 0.8s ease 1s both;}
+        @keyframes fadeDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+
+        /* ===== OFF-CARD ENHANCED ===== */
+        .off-card{border-radius:20px;overflow:hidden;margin:2.5rem 0;box-shadow:0 4px 24px rgba(0,0,0,0.08);}
+        .off-card:hover{box-shadow:0 8px 40px rgba(0,0,0,0.12);}
+
+        /* ===== FAQ SMOOTH ===== */
+        .faq-a{display:none;padding:0 0 1.1rem;font-size:0.87rem;color:var(--t2);line-height:1.75;border-top:1px solid #f1f5f9;padding-top:1rem;animation:fadeIn 0.3s ease;}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+
+        /* ===== CASE CARD ENHANCED ===== */
+        .case-card{flex:0 0 280px;border-radius:16px;overflow:hidden;background:white;box-shadow:0 4px 20px rgba(0,0,0,0.06);border:1px solid #e2e8f0;transition:all 0.35s cubic-bezier(0.34,1.56,0.64,1);}
+        .case-card:hover{transform:translateY(-8px) scale(1.02);box-shadow:0 20px 40px rgba(0,0,0,0.12);}
+
+        /* ===== STAT STRIP ENHANCED ===== */
+        .stat-n{font-size:2rem;font-weight:800;color:var(--gd);line-height:1;transition:color 0.3s;}
+
 </style>
 </head>
 <body>
+
+<!-- SCROLL PROGRESS -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- BACK TO TOP -->
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
 
 <!-- TICKER -->
 <div class="ticker">
@@ -366,6 +447,18 @@ footer{background:#000;border-top:1px solid #0a0a0a;padding:3rem 1.5rem 1.5rem;}
     <div class="hero-grid"></div>
     <div class="hero-glow"></div>
     <div class="hero-glow2"></div>
+    <!-- Floating badges -->
+    <div class="hero-float hero-float-1">
+        <div class="hero-float-n">RM3,000</div>
+        <div class="hero-float-l">SuRIA<br>Rebate</div>
+    </div>
+    <div class="hero-float hero-float-2">
+        <div style="font-size:1.3rem;">☀️</div>
+        <div>
+            <div class="hero-float-n" style="font-size:0.85rem;">90%</div>
+            <div class="hero-float-l">Bill Savings</div>
+        </div>
+    </div>
     <div class="hero-content">
         <div class="hero-eyebrow">
             <div class="hero-dot"></div>
@@ -401,12 +494,12 @@ footer{background:#000;border-top:1px solid #0a0a0a;padding:3rem 1.5rem 1.5rem;}
 </section>
 
 <!-- SURIA HOME — Report style -->
-<section class="sec sec-dark" id="suria">
+<section class="sec sec-white" id="suria">
     <div class="sec-inner">
-        <div class="label on-dark"><div class="label-dot"></div><span data-lang="zh" class="lang-text">官方政府计划</span><span data-lang="en" class="lang-text hidden">Official Government Programme</span><span data-lang="ms" class="lang-text hidden">Program Kerajaan Rasmi</span></div>
+        <div class="label on-light"><div class="label-dot"></div><span data-lang="zh" class="lang-text">官方政府计划</span><span data-lang="en" class="lang-text hidden">Official Government Programme</span><span data-lang="ms" class="lang-text hidden">Program Kerajaan Rasmi</span></div>
 
         <!-- Official card -->
-        <div class="off-card">
+        <div class="off-card reveal">
             <div class="off-card-top g">
                 <div class="off-tags"><span class="off-tag g">PETRA</span><span class="off-tag n">SEDA</span><span class="off-tag g">TNB</span></div>
                 <div class="off-official"><span data-lang="zh" class="lang-text">🏛️ 官方政府资助计划 · 2026年6月1日起</span><span data-lang="en" class="lang-text hidden">🏛️ Official Government Programme · From 1 June 2026</span><span data-lang="ms" class="lang-text hidden">🏛️ Program Kerajaan Rasmi · Mulai 1 Jun 2026</span></div>
@@ -430,8 +523,42 @@ footer{background:#000;border-top:1px solid #0a0a0a;padding:3rem 1.5rem 1.5rem;}
         </div>
 
         <!-- PETRA Official Poster -->
-        <div style="margin:2rem 0;border-radius:16px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,0.3);">
+        <div style="margin:2rem 0;border-radius:16px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,0.3);" class="reveal">
             <img src="https://raw.githubusercontent.com/Spowersolar/solar-atap/main/FB_IMG_1780748888002.jpg" alt="PETRA SuRIA Home Official" style="width:100%;display:block;">
+        </div>
+
+        <!-- INFO CARDS -->
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem;margin:2rem 0;">
+            <div style="background:white;border-radius:14px;padding:1.5rem;border:1px solid #e2e8f0;border-top:3px solid var(--g);box-shadow:0 2px 12px rgba(0,0,0,0.04);" class="reveal">
+                <div style="font-size:1.1rem;margin-bottom:0.8rem;">📋</div>
+                <h3 style="font-size:0.92rem;font-weight:700;color:var(--t1);margin-bottom:1rem;"><span data-lang="zh" class="lang-text">申请资格</span><span data-lang="en" class="lang-text hidden">Eligibility</span><span data-lang="ms" class="lang-text hidden">Kelayakan</span></h3>
+                <div style="display:flex;flex-direction:column;gap:0.55rem;">
+                    <div style="display:flex;gap:0.6rem;font-size:0.84rem;color:var(--t2);"><span style="color:var(--g);font-weight:700;flex-shrink:0;">→</span><span><strong style="color:var(--t1);"><span data-lang="zh" class="lang-text">身份：</span><span data-lang="en" class="lang-text hidden">Citizenship: </span><span data-lang="ms" class="lang-text hidden">Warganegara: </span></strong><span data-lang="zh" class="lang-text">马来西亚公民</span><span data-lang="en" class="lang-text hidden">Malaysian citizen</span><span data-lang="ms" class="lang-text hidden">Warga Malaysia</span></span></div>
+                    <div style="display:flex;gap:0.6rem;font-size:0.84rem;color:var(--t2);"><span style="color:var(--g);font-weight:700;flex-shrink:0;">→</span><span><strong style="color:var(--t1);"><span data-lang="zh" class="lang-text">账号：</span><span data-lang="en" class="lang-text hidden">Account: </span><span data-lang="ms" class="lang-text hidden">Akaun: </span></strong><span data-lang="zh" class="lang-text">TNB住宅注册户主</span><span data-lang="en" class="lang-text hidden">TNB residential account holder</span><span data-lang="ms" class="lang-text hidden">Pemilik akaun kediaman TNB</span></span></div>
+                    <div style="display:flex;gap:0.6rem;font-size:0.84rem;color:var(--t2);"><span style="color:var(--g);font-weight:700;flex-shrink:0;">→</span><span><strong style="color:var(--t1);"><span data-lang="zh" class="lang-text">安装：</span><span data-lang="en" class="lang-text hidden">Install: </span><span data-lang="ms" class="lang-text hidden">Pasang: </span></strong><span data-lang="zh" class="lang-text">通过 SEDA 认证安装商</span><span data-lang="en" class="lang-text hidden">Via SEDA certified installer</span><span data-lang="ms" class="lang-text hidden">Melalui pemasang bertauliah SEDA</span></span></div>
+                    <div style="display:flex;gap:0.6rem;font-size:0.84rem;color:var(--t2);"><span style="color:var(--g);font-weight:700;flex-shrink:0;">→</span><span><strong style="color:var(--t1);"><span data-lang="zh" class="lang-text">期限：</span><span data-lang="en" class="lang-text hidden">Deadline: </span><span data-lang="ms" class="lang-text hidden">Tempoh: </span></strong><span data-lang="zh" class="lang-text">2026年12月31日前</span><span data-lang="en" class="lang-text hidden">Before 31 Dec 2026</span><span data-lang="ms" class="lang-text hidden">Sebelum 31 Dis 2026</span></span></div>
+                </div>
+            </div>
+            <div style="background:white;border-radius:14px;padding:1.5rem;border:1px solid #e2e8f0;border-top:3px solid #3b82f6;box-shadow:0 2px 12px rgba(0,0,0,0.04);" class="reveal delay-1">
+                <div style="font-size:1.1rem;margin-bottom:0.8rem;">💰</div>
+                <h3 style="font-size:0.92rem;font-weight:700;color:var(--t1);margin-bottom:1rem;"><span data-lang="zh" class="lang-text">回扣金额</span><span data-lang="en" class="lang-text hidden">Rebate Amount</span><span data-lang="ms" class="lang-text hidden">Amaun Rebat</span></h3>
+                <div style="display:flex;flex-direction:column;gap:0.5rem;">
+                    <div style="display:flex;justify-content:space-between;padding:0.5rem 0.8rem;background:#f8fafc;border-radius:8px;font-size:0.84rem;"><span style="color:var(--t2);">3 kWac</span><span style="font-weight:800;color:#3b82f6;">RM 1,800</span></div>
+                    <div style="display:flex;justify-content:space-between;padding:0.5rem 0.8rem;background:#f8fafc;border-radius:8px;font-size:0.84rem;"><span style="color:var(--t2);">4 kWac</span><span style="font-weight:800;color:#3b82f6;">RM 2,400</span></div>
+                    <div style="display:flex;justify-content:space-between;padding:0.6rem 0.8rem;background:#eff6ff;border-radius:8px;font-size:0.84rem;border:1px solid #bfdbfe;"><span style="color:var(--t1);font-weight:700;">5 kWac+ <span style="color:#3b82f6;font-size:0.7rem;">(<span data-lang="zh" class="lang-text">满额</span><span data-lang="en" class="lang-text hidden">max</span><span data-lang="ms" class="lang-text hidden">penuh</span>)</span></span><span style="font-weight:900;color:#1d4ed8;">RM 3,000</span></div>
+                    <div style="font-size:0.72rem;color:#94a3b8;margin-top:0.2rem;"><span data-lang="zh" class="lang-text">RM 600 / kWac 计算</span><span data-lang="en" class="lang-text hidden">Calculated at RM 600 / kWac</span><span data-lang="ms" class="lang-text hidden">Dikira pada RM 600 / kWac</span></div>
+                </div>
+            </div>
+            <div style="background:white;border-radius:14px;padding:1.5rem;border:1px solid #e2e8f0;border-top:3px solid #f59e0b;box-shadow:0 2px 12px rgba(0,0,0,0.04);" class="reveal delay-2">
+                <div style="font-size:1.1rem;margin-bottom:0.8rem;">🚀</div>
+                <h3 style="font-size:0.92rem;font-weight:700;color:var(--t1);margin-bottom:1rem;"><span data-lang="zh" class="lang-text">为什么现在行动？</span><span data-lang="en" class="lang-text hidden">Why Act Now?</span><span data-lang="ms" class="lang-text hidden">Mengapa Bertindak Sekarang?</span></h3>
+                <div style="display:flex;flex-direction:column;gap:0.55rem;">
+                    <div style="display:flex;gap:0.6rem;font-size:0.84rem;color:var(--t2);"><span style="color:#f59e0b;font-weight:700;flex-shrink:0;">→</span><span data-lang="zh" class="lang-text">配额用完即止，不等人</span><span data-lang="en" class="lang-text hidden">Quota fills fast, no waiting</span><span data-lang="ms" class="lang-text hidden">Kuota habis cepat, jangan tunggu</span></div>
+                    <div style="display:flex;gap:0.6rem;font-size:0.84rem;color:var(--t2);"><span style="color:#f59e0b;font-weight:700;flex-shrink:0;">→</span><span data-lang="zh" class="lang-text">RM3,000 回扣 + 每月省电费</span><span data-lang="en" class="lang-text hidden">RM3,000 rebate + monthly savings</span><span data-lang="ms" class="lang-text hidden">Rebat RM3,000 + jimat bulanan</span></div>
+                    <div style="display:flex;gap:0.6rem;font-size:0.84rem;color:var(--t2);"><span style="color:#f59e0b;font-weight:700;flex-shrink:0;">→</span><span data-lang="zh" class="lang-text">电费持续上涨，早装早回本</span><span data-lang="en" class="lang-text hidden">Bills keep rising, earlier ROI</span><span data-lang="ms" class="lang-text hidden">Bil terus naik, lebih cepat balik modal</span></div>
+                    <div style="display:flex;gap:0.6rem;font-size:0.84rem;color:var(--t2);"><span style="color:#f59e0b;font-weight:700;flex-shrink:0;">→</span><span data-lang="zh" class="lang-text">平均 3–4 年收回投资成本</span><span data-lang="en" class="lang-text hidden">Average 3–4 year payback</span><span data-lang="ms" class="lang-text hidden">Purata 3–4 tahun bayaran balik</span></div>
+                </div>
+            </div>
         </div>
 
         <!-- Report style story layout -->
@@ -451,20 +578,66 @@ footer{background:#000;border-top:1px solid #0a0a0a;padding:3rem 1.5rem 1.5rem;}
             </div>
         </div>
 
-        <div class="hl dark-o" style="margin-top:2rem;">
-            <strong>⚠️ <span data-lang="zh" class="lang-text">全国配额仅 250 MW，先到先得，配额用完即止！</span><span data-lang="en" class="lang-text hidden">Only 250MW national quota! First come first served — once it's gone, it's gone.</span><span data-lang="ms" class="lang-text hidden">Hanya 250MW kuota nasional! Siapa cepat dia dapat — habis tiada lagi.</span></strong>
+        <!-- QUOTA PRESSURE + COUNTDOWN -->
+        <div style="background:linear-gradient(135deg,#0f172a,#1e293b);border-radius:16px;padding:1.8rem;margin-top:2rem;border:1px solid rgba(239,68,68,0.3);" class="reveal">
+            <!-- Quota bar -->
+            <div style="margin-bottom:1.5rem;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.6rem;">
+                    <div style="font-size:0.78rem;font-weight:700;color:#f87171;letter-spacing:0.05em;text-transform:uppercase;">
+                        🔴 <span data-lang="zh" class="lang-text">全国配额消耗状态</span><span data-lang="en" class="lang-text hidden">National Quota Status</span><span data-lang="ms" class="lang-text hidden">Status Kuota Nasional</span>
+                    </div>
+                    <div style="font-size:0.78rem;font-weight:800;color:#fca5a5;" id="quotaPct">计算中...</div>
+                </div>
+                <div style="height:10px;background:rgba(255,255,255,0.08);border-radius:99px;overflow:hidden;">
+                    <div id="quotaBar" style="height:100%;width:0%;background:linear-gradient(90deg,#ef4444,#f97316);border-radius:99px;transition:width 1.5s ease;box-shadow:0 0 8px rgba(239,68,68,0.5);"></div>
+                </div>
+                <div style="display:flex;justify-content:space-between;margin-top:0.4rem;font-size:0.68rem;color:#475569;">
+                    <span>0</span>
+                    <span style="color:#fca5a5;font-weight:700;" id="quotaUsed">--</span>
+                    <span><span data-lang="zh" class="lang-text">55,000 名额</span><span data-lang="en" class="lang-text hidden">55,000 slots</span><span data-lang="ms" class="lang-text hidden">55,000 slot</span></span>
+                </div>
+                <div style="margin-top:0.6rem;font-size:0.78rem;color:#94a3b8;">
+                    <span data-lang="zh" class="lang-text">⚠️ 根据 250MW 总配额换算，全国约 55,000 户可受惠。先申请先获批，配额用完即止。</span>
+                    <span data-lang="en" class="lang-text hidden">⚠️ Based on 250MW total quota, ~55,000 households can benefit nationwide. First applied, first approved — once quota is full, it's closed.</span>
+                    <span data-lang="ms" class="lang-text hidden">⚠️ Berdasarkan jumlah kuota 250MW, ~55,000 isi rumah boleh mendapat manfaat. Mohon awal, lulus awal — kuota habis, tutup.</span>
+                </div>
+            </div>
+            <!-- Countdown -->
+            <div style="border-top:1px solid rgba(255,255,255,0.07);padding-top:1.2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+                <div style="font-size:0.78rem;color:#94a3b8;">
+                    📅 <span data-lang="zh" class="lang-text">申请截止日期：<strong style="color:#e2e8f0;">2026年12月31日</strong></span>
+                    <span data-lang="en" class="lang-text hidden">Application deadline: <strong style="color:#e2e8f0;">31 December 2026</strong></span>
+                    <span data-lang="ms" class="lang-text hidden">Tarikh akhir permohonan: <strong style="color:#e2e8f0;">31 Disember 2026</strong></span>
+                </div>
+                <div style="display:flex;gap:0.4rem;align-items:center;">
+                    <div style="background:rgba(239,68,68,0.15);border:1px solid rgba(239,68,68,0.3);border-radius:8px;padding:0.4rem 0.7rem;text-align:center;">
+                        <div style="font-size:1.2rem;font-weight:900;color:#f87171;line-height:1;" id="cd-days2">--</div>
+                        <div style="font-size:0.6rem;color:#64748b;"><span data-lang="zh" class="lang-text">天</span><span data-lang="en" class="lang-text hidden">Days</span><span data-lang="ms" class="lang-text hidden">Hari</span></div>
+                    </div>
+                    <div style="color:#f87171;font-weight:800;font-size:0.9rem;">:</div>
+                    <div style="background:rgba(239,68,68,0.15);border:1px solid rgba(239,68,68,0.3);border-radius:8px;padding:0.4rem 0.7rem;text-align:center;">
+                        <div style="font-size:1.2rem;font-weight:900;color:#f87171;line-height:1;" id="cd-hours2">--</div>
+                        <div style="font-size:0.6rem;color:#64748b;"><span data-lang="zh" class="lang-text">时</span><span data-lang="en" class="lang-text hidden">Hrs</span><span data-lang="ms" class="lang-text hidden">Jam</span></div>
+                    </div>
+                    <div style="color:#f87171;font-weight:800;font-size:0.9rem;">:</div>
+                    <div style="background:rgba(239,68,68,0.15);border:1px solid rgba(239,68,68,0.3);border-radius:8px;padding:0.4rem 0.7rem;text-align:center;">
+                        <div style="font-size:1.2rem;font-weight:900;color:#f87171;line-height:1;" id="cd-mins2">--</div>
+                        <div style="font-size:0.6rem;color:#64748b;"><span data-lang="zh" class="lang-text">分</span><span data-lang="en" class="lang-text hidden">Min</span><span data-lang="ms" class="lang-text hidden">Min</span></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
 <!-- SOLAR ATAP — Dark section -->
-<section class="sec" style="background:#000;padding-top:5rem;padding-bottom:5rem;" id="atap">
+<section class="sec" style="background:white;padding-top:5rem;padding-bottom:5rem;" id="atap">
     <div class="sec-inner">
-        <div class="label on-dark"><div class="label-dot"></div><span data-lang="zh" class="lang-text">2026年全新机制</span><span data-lang="en" class="lang-text hidden">New 2026 Framework</span><span data-lang="ms" class="lang-text hidden">Mekanisme Baharu 2026</span></div>
-        <h2 class="ttl white"><span data-lang="zh" class="lang-text">Solar ATAP</span><span data-lang="en" class="lang-text hidden">Solar ATAP</span><span data-lang="ms" class="lang-text hidden">Solar ATAP</span></h2>
-        <p class="sub muted"><span data-lang="zh" class="lang-text">取代旧有 NEM 3.0，自 2026 年 1 月 1 日起生效。无配额限制，任何有地房屋均可申请。</span><span data-lang="en" class="lang-text hidden">Replaces NEM 3.0, effective 1 January 2026. No quota limits — any landed property can apply.</span><span data-lang="ms" class="lang-text hidden">Menggantikan NEM 3.0, berkuat kuasa 1 Januari 2026. Tiada had kuota — mana-mana rumah landed boleh mohon.</span></p>
+        <div class="label on-light"><div class="label-dot"></div><span data-lang="zh" class="lang-text">2026年全新机制</span><span data-lang="en" class="lang-text hidden">New 2026 Framework</span><span data-lang="ms" class="lang-text hidden">Mekanisme Baharu 2026</span></div>
+        <h2 class="ttl dark"><span data-lang="zh" class="lang-text">Solar ATAP</span><span data-lang="en" class="lang-text hidden">Solar ATAP</span><span data-lang="ms" class="lang-text hidden">Solar ATAP</span></h2>
+        <p class="sub dark"><span data-lang="zh" class="lang-text">取代旧有 NEM 3.0，自 2026 年 1 月 1 日起生效。无配额限制，任何有地房屋均可申请。</span><span data-lang="en" class="lang-text hidden">Replaces NEM 3.0, effective 1 January 2026. No quota limits — any landed property can apply.</span><span data-lang="ms" class="lang-text hidden">Menggantikan NEM 3.0, berkuat kuasa 1 Januari 2026. Tiada had kuota — mana-mana rumah landed boleh mohon.</span></p>
 
-        <div class="off-card">
+        <div class="off-card reveal">
             <div class="off-card-top b">
                 <div class="off-tags"><span class="off-tag b">TNB</span><span class="off-tag n">SEDA</span><span class="off-tag n">KeTSA</span></div>
                 <div class="off-official"><span data-lang="zh" class="lang-text">🏛️ 官方太阳能框架 · 自 2026年1月1日起生效</span><span data-lang="en" class="lang-text hidden">🏛️ Official Solar Framework · Effective 1 January 2026</span><span data-lang="ms" class="lang-text hidden">🏛️ Rangka Kerja Solar Rasmi · Berkuat Kuasa 1 Januari 2026</span></div>
@@ -483,6 +656,37 @@ footer{background:#000;border-top:1px solid #0a0a0a;padding:3rem 1.5rem 1.5rem;}
                     <div class="off-step"><div class="off-step-n b">2</div><div class="off-step-l"><span data-lang="zh" class="lang-text">自用优先</span><span data-lang="en" class="lang-text hidden">Self-Use</span><span data-lang="ms" class="lang-text hidden">Guna Sendiri</span></div></div>
                     <div class="off-step"><div class="off-step-n b">3</div><div class="off-step-l"><span data-lang="zh" class="lang-text">余电卖回</span><span data-lang="en" class="lang-text hidden">Export</span><span data-lang="ms" class="lang-text hidden">Jual Lebihan</span></div></div>
                     <div class="off-step"><div class="off-step-n b">4</div><div class="off-step-l"><span data-lang="zh" class="lang-text">电费大减</span><span data-lang="en" class="lang-text hidden">Bill Drops</span><span data-lang="ms" class="lang-text hidden">Bil Turun</span></div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ATAP INFO CARDS -->
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem;margin:2rem 0;">
+            <div style="background:white;border-radius:14px;padding:1.5rem;border:1px solid #e2e8f0;border-top:3px solid #3b82f6;box-shadow:0 2px 12px rgba(0,0,0,0.04);" class="reveal">
+                <div style="font-size:1.1rem;margin-bottom:0.8rem;">📦</div>
+                <h3 style="font-size:0.92rem;font-weight:700;color:var(--t1);margin-bottom:1rem;"><span data-lang="zh" class="lang-text">安装容量限制</span><span data-lang="en" class="lang-text hidden">Capacity Limits</span><span data-lang="ms" class="lang-text hidden">Had Kapasiti</span></h3>
+                <div style="display:flex;flex-direction:column;gap:0.55rem;">
+                    <div style="display:flex;gap:0.6rem;font-size:0.84rem;color:var(--t2);"><span style="color:#3b82f6;font-weight:700;flex-shrink:0;">→</span><span><strong style="color:var(--t1);"><span data-lang="zh" class="lang-text">单相电表：</span><span data-lang="en" class="lang-text hidden">Single Phase: </span><span data-lang="ms" class="lang-text hidden">Fasa Tunggal: </span></strong><span data-lang="zh" class="lang-text">最高 5 kW</span><span data-lang="en" class="lang-text hidden">Max 5 kW</span><span data-lang="ms" class="lang-text hidden">Maks 5 kW</span></span></div>
+                    <div style="display:flex;gap:0.6rem;font-size:0.84rem;color:var(--t2);"><span style="color:#3b82f6;font-weight:700;flex-shrink:0;">→</span><span><strong style="color:var(--t1);"><span data-lang="zh" class="lang-text">三相电表：</span><span data-lang="en" class="lang-text hidden">Three Phase: </span><span data-lang="ms" class="lang-text hidden">Tiga Fasa: </span></strong><span data-lang="zh" class="lang-text">最高 15 kW</span><span data-lang="en" class="lang-text hidden">Max 15 kW</span><span data-lang="ms" class="lang-text hidden">Maks 15 kW</span></span></div>
+                    <div style="display:flex;gap:0.6rem;font-size:0.84rem;color:var(--t2);"><span style="color:#3b82f6;font-weight:700;flex-shrink:0;">→</span><span><strong style="color:var(--t1);"><span data-lang="zh" class="lang-text">商业/工厂：</span><span data-lang="en" class="lang-text hidden">Commercial: </span><span data-lang="ms" class="lang-text hidden">Komersial: </span></strong><span data-lang="zh" class="lang-text">按实际需求设计</span><span data-lang="en" class="lang-text hidden">Custom by demand</span><span data-lang="ms" class="lang-text hidden">Mengikut keperluan</span></span></div>
+                </div>
+            </div>
+            <div style="background:white;border-radius:14px;padding:1.5rem;border:1px solid #e2e8f0;border-top:3px solid var(--g);box-shadow:0 2px 12px rgba(0,0,0,0.04);" class="reveal delay-1">
+                <div style="font-size:1.1rem;margin-bottom:0.8rem;">📜</div>
+                <h3 style="font-size:0.92rem;font-weight:700;color:var(--t1);margin-bottom:1rem;"><span data-lang="zh" class="lang-text">合约与权益</span><span data-lang="en" class="lang-text hidden">Contract & Rights</span><span data-lang="ms" class="lang-text hidden">Kontrak & Hak</span></h3>
+                <div style="display:flex;flex-direction:column;gap:0.55rem;">
+                    <div style="display:flex;gap:0.6rem;font-size:0.84rem;color:var(--t2);"><span style="color:var(--g);font-weight:700;flex-shrink:0;">→</span><span><span data-lang="zh" class="lang-text">与 TNB 签署 <strong style="color:var(--t1);">10 年合约</strong></span><span data-lang="en" class="lang-text hidden"><strong style="color:var(--t1);">10-year contract</strong> with TNB</span><span data-lang="ms" class="lang-text hidden"><strong style="color:var(--t1);">Kontrak 10 tahun</strong> dengan TNB</span></span></div>
+                    <div style="display:flex;gap:0.6rem;font-size:0.84rem;color:var(--t2);"><span style="color:var(--g);font-weight:700;flex-shrink:0;">→</span><span><span data-lang="zh" class="lang-text">10年后系统归你，<strong style="color:var(--t1);">继续免费发电</strong></span><span data-lang="en" class="lang-text hidden">System yours after 10 years — <strong style="color:var(--t1);">free electricity continues</strong></span><span data-lang="ms" class="lang-text hidden">Sistem milik anda selepas 10 tahun — <strong style="color:var(--t1);">elektrik percuma berterusan</strong></span></span></div>
+                    <div style="display:flex;gap:0.6rem;font-size:0.84rem;color:var(--t2);"><span style="color:var(--g);font-weight:700;flex-shrink:0;">→</span><span><span data-lang="zh" class="lang-text">系统寿命 <strong style="color:var(--t1);">25 年以上</strong></span><span data-lang="en" class="lang-text hidden">System lifespan <strong style="color:var(--t1);">25+ years</strong></span><span data-lang="ms" class="lang-text hidden">Jangka hayat sistem <strong style="color:var(--t1);">25+ tahun</strong></span></span></div>
+                </div>
+            </div>
+            <div style="background:#fffbeb;border-radius:14px;padding:1.5rem;border:1px solid #fde68a;border-top:3px solid #f59e0b;box-shadow:0 2px 12px rgba(0,0,0,0.04);" class="reveal delay-2">
+                <div style="font-size:1.1rem;margin-bottom:0.8rem;">⚠️</div>
+                <h3 style="font-size:0.92rem;font-weight:700;color:var(--t1);margin-bottom:1rem;"><span data-lang="zh" class="lang-text">重要须知</span><span data-lang="en" class="lang-text hidden">Important Note</span><span data-lang="ms" class="lang-text hidden">Nota Penting</span></h3>
+                <div style="background:white;border-radius:10px;padding:0.9rem;border-left:3px solid #f59e0b;font-size:0.84rem;color:#92400e;line-height:1.7;">
+                    <span data-lang="zh" class="lang-text">⚠️ <strong>每月结算，不滚存</strong> — 当月余额不能带到下个月，也不会以现金支付。建议系统大小与用电量匹配。</span>
+                    <span data-lang="en" class="lang-text hidden">⚠️ <strong>Monthly settlement, no rollover</strong> — Excess credits cannot carry to next month and won't be paid as cash. Match system size to usage.</span>
+                    <span data-lang="ms" class="lang-text hidden">⚠️ <strong>Penyelesaian bulanan, tiada rollover</strong> — Kredit lebihan tidak boleh dibawa ke bulan depan. Padankan saiz sistem dengan penggunaan.</span>
                 </div>
             </div>
         </div>
@@ -528,12 +732,12 @@ footer{background:#000;border-top:1px solid #0a0a0a;padding:3rem 1.5rem 1.5rem;}
 </section>
 
 <!-- QUIZ — Story driven -->
-<section class="sec sec-mid">
+<section class="sec" style="background:#f8fafc;">
     <div class="sec-inner">
-        <div class="label on-dark"><div class="label-dot"></div><span data-lang="zh" class="lang-text">30秒资格检测</span><span data-lang="en" class="lang-text hidden">30-Second Eligibility Check</span><span data-lang="ms" class="lang-text hidden">Semak Kelayakan 30 Saat</span></div>
-        <h2 class="ttl white" style="margin-bottom:0.5rem;"><span data-lang="zh" class="lang-text">我符合资格吗？</span><span data-lang="en" class="lang-text hidden">Am I Eligible?</span><span data-lang="ms" class="lang-text hidden">Adakah Saya Layak?</span></h2>
-        <p class="sub muted" style="margin-bottom:2rem;"><span data-lang="zh" class="lang-text">4道问题，马上知道你能拿多少。</span><span data-lang="en" class="lang-text hidden">4 questions, find out how much you qualify for.</span><span data-lang="ms" class="lang-text hidden">4 soalan, tahu berapa yang anda layak dapat.</span></p>
-        <div class="quiz-wrap">
+        <div class="label on-light"><div class="label-dot"></div><span data-lang="zh" class="lang-text">30秒资格检测</span><span data-lang="en" class="lang-text hidden">30-Second Eligibility Check</span><span data-lang="ms" class="lang-text hidden">Semak Kelayakan 30 Saat</span></div>
+        <h2 class="ttl dark" style="margin-bottom:0.5rem;"><span data-lang="zh" class="lang-text">我符合资格吗？</span><span data-lang="en" class="lang-text hidden">Am I Eligible?</span><span data-lang="ms" class="lang-text hidden">Adakah Saya Layak?</span></h2>
+        <p class="sub dark" style="margin-bottom:2rem;"><span data-lang="zh" class="lang-text">4道问题，马上知道你能拿多少。</span><span data-lang="en" class="lang-text hidden">4 questions, find out how much you qualify for.</span><span data-lang="ms" class="lang-text hidden">4 soalan, tahu berapa yang anda layak dapat.</span></p>
+        <div class="quiz-wrap reveal">
             <div class="qbar"><div class="qbar-s" id="qp1"></div><div class="qbar-s" id="qp2"></div><div class="qbar-s" id="qp3"></div><div class="qbar-s" id="qp4"></div></div>
             <div class="qstep active" id="qs1">
                 <div class="qq"><span data-lang="zh" class="lang-text">1️⃣ 你的房产类型？</span><span data-lang="en" class="lang-text hidden">1️⃣ Your property type?</span><span data-lang="ms" class="lang-text hidden">1️⃣ Jenis hartanah anda?</span></div>
@@ -590,7 +794,7 @@ footer{background:#000;border-top:1px solid #0a0a0a;padding:3rem 1.5rem 1.5rem;}
         <h2 class="ttl dark"><span data-lang="zh" class="lang-text">完工案例</span><span data-lang="en" class="lang-text hidden">Completed Projects</span><span data-lang="ms" class="lang-text hidden">Projek Siap</span></h2>
         <p class="sub dark"><span data-lang="zh" class="lang-text">以下数据来自真实安装记录，向右滑动查看。</span><span data-lang="en" class="lang-text hidden">Data from real installation records. Swipe right to see more.</span><span data-lang="ms" class="lang-text hidden">Data dari rekod pemasangan sebenar. Leret kanan untuk lihat lebih.</span></p>
 
-        <div class="stat-strip">
+        <div class="stat-strip reveal">
             <div class="stat-cell"><div class="stat-n">28.40</div><div class="stat-l"><span data-lang="zh" class="lang-text">最大单项 kWp</span><span data-lang="en" class="lang-text hidden">Largest single kWp</span><span data-lang="ms" class="lang-text hidden">kWp terbesar tunggal</span></div></div>
             <div class="stat-cell"><div class="stat-n">RM1,700</div><div class="stat-l"><span data-lang="zh" class="lang-text">最高月省电费</span><span data-lang="en" class="lang-text hidden">Highest monthly savings</span><span data-lang="ms" class="lang-text hidden">Penjimatan bulanan tertinggi</span></div></div>
             <div class="stat-cell"><div class="stat-n">6+</div><div class="stat-l"><span data-lang="zh" class="lang-text">安装照片参考</span><span data-lang="en" class="lang-text hidden">Installation References</span><span data-lang="ms" class="lang-text hidden">Rujukan Pemasangan</span></div></div>
@@ -602,7 +806,7 @@ footer{background:#000;border-top:1px solid #0a0a0a;padding:3rem 1.5rem 1.5rem;}
             <img src="https://raw.githubusercontent.com/Spowersolar/solar-atap/main/C_PIC-2.jpg" alt="Solar Commercial" loading="lazy" style="width:100%;height:160px;object-fit:cover;display:block;">
         </div>
 
-        <div class="cases-scroll">
+        <div class="cases-scroll reveal">
             <div class="case-card">
                 <img src="https://raw.githubusercontent.com/Spowersolar/solar-atap/main/FB_IMG_1780748962070.jpg" alt="Sungai Petani Factory" class="case-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
                 <div class="case-placeholder" style="display:none;background:linear-gradient(135deg,#022c1e,#0f172a);">🏭</div>
@@ -680,13 +884,13 @@ footer{background:#000;border-top:1px solid #0a0a0a;padding:3rem 1.5rem 1.5rem;}
 </section>
 
 <!-- SPOWER — Dark magazine -->
-<section class="sec sec-darker">
+<section class="sec sec-white">
     <div class="sec-inner">
-        <div class="label on-dark"><div class="label-dot"></div><span data-lang="zh" class="lang-text">为什么选择我们</span><span data-lang="en" class="lang-text hidden">Why Choose Us</span><span data-lang="ms" class="lang-text hidden">Mengapa Pilih Kami</span></div>
-        <h2 class="ttl white"><span data-lang="zh" class="lang-text">Spower Solar</span><span data-lang="en" class="lang-text hidden">Spower Solar</span><span data-lang="ms" class="lang-text hidden">Spower Solar</span></h2>
-        <p class="sub muted"><span data-lang="zh" class="lang-text">Sun Power Industries Sdn. Bhd. (202301036661) · 2016年创立 · SEDA 认证 · Kedah & Perlis 本地团队</span><span data-lang="en" class="lang-text hidden">Sun Power Industries Sdn. Bhd. (202301036661) · Est. 2016 · SEDA Certified · Local team in Kedah & Perlis</span><span data-lang="ms" class="lang-text hidden">Sun Power Industries Sdn. Bhd. (202301036661) · Ditubuhkan 2016 · Bertauliah SEDA · Pasukan tempatan Kedah & Perlis</span></p>
+        <div class="label on-light"><div class="label-dot"></div><span data-lang="zh" class="lang-text">为什么选择我们</span><span data-lang="en" class="lang-text hidden">Why Choose Us</span><span data-lang="ms" class="lang-text hidden">Mengapa Pilih Kami</span></div>
+        <h2 class="ttl dark"><span data-lang="zh" class="lang-text">Spower Solar</span><span data-lang="en" class="lang-text hidden">Spower Solar</span><span data-lang="ms" class="lang-text hidden">Spower Solar</span></h2>
+        <p class="sub dark"><span data-lang="zh" class="lang-text">Sun Power Industries Sdn. Bhd. (202301036661) · 2016年创立 · SEDA 认证 · Kedah & Perlis 本地团队</span><span data-lang="en" class="lang-text hidden">Sun Power Industries Sdn. Bhd. (202301036661) · Est. 2016 · SEDA Certified · Local team in Kedah & Perlis</span><span data-lang="ms" class="lang-text hidden">Sun Power Industries Sdn. Bhd. (202301036661) · Ditubuhkan 2016 · Bertauliah SEDA · Pasukan tempatan Kedah & Perlis</span></p>
 
-        <div class="adv-list" style="margin-bottom:3rem;">
+        <div class="adv-list reveal" style="margin-bottom:3rem;">
             <div class="adv-row"><div class="adv-icon">🔄</div><div class="adv-body"><strong><span data-lang="zh" class="lang-text">一站式服务，零外包</span><span data-lang="en" class="lang-text hidden">One-Stop, Zero Outsourcing</span><span data-lang="ms" class="lang-text hidden">Satu Henti, Tiada Outsource</span></strong><span><span data-lang="zh" class="lang-text">从咨询、设计、安装、TNB申请到售后，全程自家团队，不外包，速度快品质稳定。</span><span data-lang="en" class="lang-text hidden">From consultation to after-sales, entirely in-house. No outsourcing means faster speed and consistent quality.</span><span data-lang="ms" class="lang-text hidden">Dari konsultasi hingga selepas jualan, sepenuhnya pasukan sendiri. Tiada outsource bermakna lebih cepat dan kualiti konsisten.</span></span></div></div>
             <div class="adv-row"><div class="adv-icon">🏆</div><div class="adv-body"><strong><span data-lang="zh" class="lang-text">Tier 1 板材，30年品质保证</span><span data-lang="en" class="lang-text hidden">Tier 1 Panels, 30-Year Quality Guarantee</span><span data-lang="ms" class="lang-text hidden">Panel Tier 1, Jaminan Kualiti 30 Tahun</span></strong><span><span data-lang="zh" class="lang-text">采用全球排名前三太阳能板，100% 进口。AP Systems 官方认证经销商，微型逆变器领域全球领导品牌。</span><span data-lang="en" class="lang-text hidden">Top 3 globally ranked solar panels, 100% imported. Official AP Systems distributor — global leader in microinverters.</span><span data-lang="ms" class="lang-text hidden">Panel solar 3 teratas global, 100% diimport. Pengedar rasmi AP Systems — pemimpin global dalam microinverter.</span></span></div></div>
             <div class="adv-row"><div class="adv-icon">📋</div><div class="adv-body"><strong><span data-lang="zh" class="lang-text">SuRIA Home 全程协助申请</span><span data-lang="en" class="lang-text hidden">Full SuRIA Home Application Assistance</span><span data-lang="ms" class="lang-text hidden">Bantuan Penuh Permohonan SuRIA Home</span></strong><span><span data-lang="zh" class="lang-text">我们帮您处理所有 TNB 文件和 SuRIA Home 回扣申请流程，确保成功领取 RM 3,000 回扣。</span><span data-lang="en" class="lang-text hidden">We handle all TNB documents and SuRIA Home rebate application to ensure you successfully receive the RM 3,000 rebate.</span><span data-lang="ms" class="lang-text hidden">Kami urus semua dokumen TNB dan permohonan rebat SuRIA Home untuk memastikan anda berjaya terima rebat RM 3,000.</span></span></div></div>
@@ -694,7 +898,7 @@ footer{background:#000;border-top:1px solid #0a0a0a;padding:3rem 1.5rem 1.5rem;}
         </div>
 
         <!-- Promise -->
-        <h3 style="color:#1e293b;font-size:1rem;font-weight:700;margin-bottom:1rem;">✅ <span data-lang="zh" class="lang-text">Spower 的承诺</span><span data-lang="en" class="lang-text hidden">Spower's Promise</span><span data-lang="ms" class="lang-text hidden">Janji Spower</span></h3>
+        <h3 style="color:var(--t1);font-size:1rem;font-weight:700;margin-bottom:1rem;">✅ <span data-lang="zh" class="lang-text">Spower 的承诺</span><span data-lang="en" class="lang-text hidden">Spower's Promise</span><span data-lang="ms" class="lang-text hidden">Janji Spower</span></h3>
         <div style="background:white;border-radius:12px;overflow:hidden;margin-bottom:3rem;">
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#f1f5f9;">
                 <div style="background:white;padding:1rem 1.2rem;display:flex;align-items:center;gap:0.7rem;font-size:0.88rem;color:#0f172a;font-weight:600;"><span style="color:#10b981;font-size:1.1rem;">✓</span><span data-lang="zh" class="lang-text">SuRIA Home 全程申请协助</span><span data-lang="en" class="lang-text hidden">Full SuRIA Home assistance</span><span data-lang="ms" class="lang-text hidden">Bantuan penuh SuRIA Home</span></div>
@@ -709,8 +913,8 @@ footer{background:#000;border-top:1px solid #0a0a0a;padding:3rem 1.5rem 1.5rem;}
         </div>
 
         <!-- Reviews -->
-        <h3 style="color:#1e293b;font-size:1rem;font-weight:700;margin-bottom:1rem;">⭐ <span data-lang="zh" class="lang-text">Google 真实评价</span><span data-lang="en" class="lang-text hidden">Real Google Reviews</span><span data-lang="ms" class="lang-text hidden">Ulasan Google Sebenar</span></h3>
-        <div class="reviews">
+        <h3 style="color:var(--t1);font-size:1rem;font-weight:700;margin-bottom:1rem;">⭐ <span data-lang="zh" class="lang-text">Google 真实评价</span><span data-lang="en" class="lang-text hidden">Real Google Reviews</span><span data-lang="ms" class="lang-text hidden">Ulasan Google Sebenar</span></h3>
+        <div class="reviews reveal">
             <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"After installing solar my bill reached RM24 only. This company is very reliable and I can fully trust them."</p><div class="rev-author"><div class="rev-av">L</div><div><div class="rev-name">Lee David</div><div class="rev-save">💰 RM24/month</div></div></div></div>
             <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"After install solar, this month only paid RM5.90 TNB bill. All teams always provide best service."</p><div class="rev-author"><div class="rev-av">B</div><div><div class="rev-name">Bowie Tan</div><div class="rev-save">💰 RM5.90/month</div></div></div></div>
             <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"销售团队非常专业有耐心，行政5分，技术5分，一次性解决所有问题，非常满意！"</p><div class="rev-author"><div class="rev-av">A</div><div><div class="rev-name">Alex Teng</div><div class="rev-save">✅ <span data-lang="zh" class="lang-text">三组5星</span><span data-lang="en" class="lang-text hidden">All 5 stars</span><span data-lang="ms" class="lang-text hidden">Semua 5 bintang</span></div></div></div></div>
@@ -720,12 +924,12 @@ footer{background:#000;border-top:1px solid #0a0a0a;padding:3rem 1.5rem 1.5rem;}
 </section>
 
 <!-- SERVICE AREA — Light section -->
-<section class="sec sec-light">
+<section class="sec sec-white">
     <div class="sec-inner">
         <div class="label on-light"><div class="label-dot"></div><span data-lang="zh" class="lang-text">服务范围</span><span data-lang="en" class="lang-text hidden">Coverage</span><span data-lang="ms" class="lang-text hidden">Liputan</span></div>
         <h2 class="ttl dark"><span data-lang="zh" class="lang-text">专注北马，深耕本地</span><span data-lang="en" class="lang-text hidden">Focused on Northern Malaysia</span><span data-lang="ms" class="lang-text hidden">Fokus Malaysia Utara</span></h2>
         <p class="sub dark"><span data-lang="zh" class="lang-text">Spower 专注 Kedah & Perlis，本地团队最快响应，最了解北马用户需求。</span><span data-lang="en" class="lang-text hidden">Spower focuses on Kedah & Perlis — local team, fastest response, best understanding of northern Malaysian customers.</span><span data-lang="ms" class="lang-text hidden">Spower fokus di Kedah & Perlis — pasukan tempatan, respons terpantas, paling faham pelanggan utara Malaysia.</span></p>
-        <div class="area-wrap">
+        <div class="area-wrap reveal">
             <div class="area-top">
                 <div class="area-top-title">🏛️ <span data-lang="zh" class="lang-text">Kedah & Perlis 专属服务团队</span><span data-lang="en" class="lang-text hidden">Dedicated Team for Kedah & Perlis</span><span data-lang="ms" class="lang-text hidden">Pasukan Khusus Kedah & Perlis</span></div>
                 <div class="area-top-sub"><span data-lang="zh" class="lang-text">本地团队 · 熟悉北马法规与环境 · 最快响应速度</span><span data-lang="en" class="lang-text hidden">Local team · Familiar with northern regulations · Fastest response</span><span data-lang="ms" class="lang-text hidden">Pasukan tempatan · Biasa peraturan utara · Respons terpantas</span></div>
@@ -752,7 +956,7 @@ footer{background:#000;border-top:1px solid #0a0a0a;padding:3rem 1.5rem 1.5rem;}
 </section>
 
 <!-- CALCULATOR -->
-<section class="sec sec-light">
+<section class="sec sec-white">
     <div class="sec-inner" style="max-width:700px;">
         <div class="label on-light"><div class="label-dot"></div><span data-lang="zh" class="lang-text">电费计算器</span><span data-lang="en" class="lang-text hidden">Bill Calculator</span><span data-lang="ms" class="lang-text hidden">Kalkulator Bil</span></div>
         <h2 class="ttl dark"><span data-lang="zh" class="lang-text">我能省多少？</span><span data-lang="en" class="lang-text hidden">How Much Can I Save?</span><span data-lang="ms" class="lang-text hidden">Berapa Saya Boleh Jimat?</span></h2>
@@ -811,6 +1015,251 @@ footer{background:#000;border-top:1px solid #0a0a0a;padding:3rem 1.5rem 1.5rem;}
 </section>
 
 <!-- FAQ -->
+
+<!-- TRUST BADGES -->
+<section style="background:white;padding:2.5rem 1.5rem;border-bottom:1px solid #f1f5f9;">
+    <div style="max-width:1100px;margin:0 auto;">
+        <div style="text-align:center;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#94a3b8;margin-bottom:1.5rem;">
+            <span data-lang="zh" class="lang-text">官方认证 · 值得信赖</span>
+            <span data-lang="en" class="lang-text hidden">Officially Certified · Trusted</span>
+            <span data-lang="ms" class="lang-text hidden">Bertauliah Rasmi · Dipercayai</span>
+        </div>
+        <div class="reveal" style="display:flex;align-items:center;justify-content:center;gap:2rem;flex-wrap:wrap;">
+            <div style="text-align:center;padding:0.8rem 1.5rem;border:1px solid #e2e8f0;border-radius:10px;min-width:100px;">
+                <div style="font-size:1.1rem;font-weight:900;color:#059669;letter-spacing:-0.02em;">SEDA</div>
+                <div style="font-size:0.65rem;color:#94a3b8;margin-top:0.2rem;font-weight:600;">Certified Installer</div>
+            </div>
+            <div style="text-align:center;padding:0.8rem 1.5rem;border:1px solid #e2e8f0;border-radius:10px;min-width:100px;">
+                <div style="font-size:1.1rem;font-weight:900;color:#1d4ed8;">TNB</div>
+                <div style="font-size:0.65rem;color:#94a3b8;margin-top:0.2rem;font-weight:600;">Grid Approved</div>
+            </div>
+            <div style="text-align:center;padding:0.8rem 1.5rem;border:1px solid #e2e8f0;border-radius:10px;min-width:100px;">
+                <div style="font-size:1.1rem;font-weight:900;color:#7c3aed;">PETRA</div>
+                <div style="font-size:0.65rem;color:#94a3b8;margin-top:0.2rem;font-weight:600;">SuRIA Home</div>
+            </div>
+            <div style="text-align:center;padding:0.8rem 1.5rem;border:1px solid #e2e8f0;border-radius:10px;min-width:100px;">
+                <div style="font-size:1rem;font-weight:900;color:#d97706;">AP Systems</div>
+                <div style="font-size:0.65rem;color:#94a3b8;margin-top:0.2rem;font-weight:600;">Official Distributor</div>
+            </div>
+            <div style="text-align:center;padding:0.8rem 1.5rem;border:1px solid #e2e8f0;border-radius:10px;min-width:100px;">
+                <div style="font-size:0.85rem;font-weight:900;color:#0f172a;">Tier 1</div>
+                <div style="font-size:0.65rem;color:#94a3b8;margin-top:0.2rem;font-weight:600;">Solar Panels</div>
+            </div>
+            <div style="text-align:center;padding:0.8rem 1.5rem;border:1px solid #e2e8f0;border-radius:10px;min-width:100px;">
+                <div style="font-size:0.85rem;font-weight:900;color:#0f172a;">Est. 2016</div>
+                <div style="font-size:0.65rem;color:#94a3b8;margin-top:0.2rem;font-weight:600;">10 Years Experience</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- BEFORE vs AFTER BILL COMPARISON -->
+<section style="background:#f8fafc;padding:5rem 1.5rem;">
+    <div style="max-width:900px;margin:0 auto;">
+        <div style="text-align:center;margin-bottom:3rem;" class="reveal">
+            <div style="display:inline-flex;align-items:center;gap:0.5rem;font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gd);background:var(--gl);padding:0.3rem 0.8rem;border-radius:99px;margin-bottom:1rem;">
+                <div style="width:5px;height:5px;border-radius:50%;background:var(--g);"></div>
+                <span data-lang="zh" class="lang-text">真实数据对比</span><span data-lang="en" class="lang-text hidden">Real Data Comparison</span><span data-lang="ms" class="lang-text hidden">Perbandingan Data Sebenar</span>
+            </div>
+            <h2 style="font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:800;color:var(--t1);letter-spacing:-0.02em;margin-bottom:0.5rem;">
+                <span data-lang="zh" class="lang-text">装前 vs 装后</span><span data-lang="en" class="lang-text hidden">Before vs After Solar</span><span data-lang="ms" class="lang-text hidden">Sebelum vs Selepas Solar</span>
+            </h2>
+            <p style="color:var(--t2);font-size:0.9rem;"><span data-lang="zh" class="lang-text">基于 Kedah 真实客户数据</span><span data-lang="en" class="lang-text hidden">Based on real Kedah customer data</span><span data-lang="ms" class="lang-text hidden">Berdasarkan data pelanggan Kedah sebenar</span></p>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;" class="reveal">
+            <!-- Before -->
+            <div style="background:white;border-radius:16px;padding:1.8rem;border:2px solid #fee2e2;position:relative;overflow:hidden;">
+                <div style="position:absolute;top:0;left:0;right:0;height:4px;background:#ef4444;"></div>
+                <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#ef4444;margin-bottom:1rem;">
+                    <span data-lang="zh" class="lang-text">❌ 装前</span><span data-lang="en" class="lang-text hidden">❌ Before Solar</span><span data-lang="ms" class="lang-text hidden">❌ Sebelum Solar</span>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:0.8rem;">
+                    <div style="display:flex;justify-content:space-between;align-items:center;padding:0.7rem;background:#fef2f2;border-radius:8px;">
+                        <span style="font-size:0.82rem;color:var(--t2);"><span data-lang="zh" class="lang-text">月电费</span><span data-lang="en" class="lang-text hidden">Monthly Bill</span><span data-lang="ms" class="lang-text hidden">Bil Bulanan</span></span>
+                        <span style="font-weight:800;color:#ef4444;">RM 380</span>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;align-items:center;padding:0.7rem;background:#fef2f2;border-radius:8px;">
+                        <span style="font-size:0.82rem;color:var(--t2);"><span data-lang="zh" class="lang-text">年电费</span><span data-lang="en" class="lang-text hidden">Annual Bill</span><span data-lang="ms" class="lang-text hidden">Bil Tahunan</span></span>
+                        <span style="font-weight:800;color:#ef4444;">RM 4,560</span>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;align-items:center;padding:0.7rem;background:#fef2f2;border-radius:8px;">
+                        <span style="font-size:0.82rem;color:var(--t2);"><span data-lang="zh" class="lang-text">10年支出</span><span data-lang="en" class="lang-text hidden">10-Year Cost</span><span data-lang="ms" class="lang-text hidden">Kos 10 Tahun</span></span>
+                        <span style="font-weight:800;color:#ef4444;">RM 45,600+</span>
+                    </div>
+                </div>
+            </div>
+            <!-- After -->
+            <div style="background:white;border-radius:16px;padding:1.8rem;border:2px solid #d1fae5;position:relative;overflow:hidden;">
+                <div style="position:absolute;top:0;left:0;right:0;height:4px;background:var(--g);"></div>
+                <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--gd);margin-bottom:1rem;">
+                    <span data-lang="zh" class="lang-text">✅ 装后（含回扣）</span><span data-lang="en" class="lang-text hidden">✅ After (with Rebate)</span><span data-lang="ms" class="lang-text hidden">✅ Selepas (dengan Rebat)</span>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:0.8rem;">
+                    <div style="display:flex;justify-content:space-between;align-items:center;padding:0.7rem;background:#f0fdf4;border-radius:8px;">
+                        <span style="font-size:0.82rem;color:var(--t2);"><span data-lang="zh" class="lang-text">月电费</span><span data-lang="en" class="lang-text hidden">Monthly Bill</span><span data-lang="ms" class="lang-text hidden">Bil Bulanan</span></span>
+                        <span style="font-weight:800;color:var(--g);">RM 45 <span style="font-size:0.7rem;color:var(--t3);">(-88%)</span></span>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;align-items:center;padding:0.7rem;background:#f0fdf4;border-radius:8px;">
+                        <span style="font-size:0.82rem;color:var(--t2);"><span data-lang="zh" class="lang-text">SuRIA 回扣</span><span data-lang="en" class="lang-text hidden">SuRIA Rebate</span><span data-lang="ms" class="lang-text hidden">Rebat SuRIA</span></span>
+                        <span style="font-weight:800;color:var(--g);">- RM 3,000</span>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;align-items:center;padding:0.7rem;background:#f0fdf4;border-radius:8px;">
+                        <span style="font-size:0.82rem;color:var(--t2);"><span data-lang="zh" class="lang-text">10年节省</span><span data-lang="en" class="lang-text hidden">10-Year Savings</span><span data-lang="ms" class="lang-text hidden">Jimat 10 Tahun</span></span>
+                        <span style="font-weight:800;color:var(--g);">RM 37,800+</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Visual bar comparison -->
+        <div style="background:white;border-radius:16px;padding:1.8rem;margin-top:1.5rem;border:1px solid #e2e8f0;" class="reveal">
+            <div style="font-size:0.82rem;font-weight:700;color:var(--t2);margin-bottom:1.2rem;"><span data-lang="zh" class="lang-text">月电费对比</span><span data-lang="en" class="lang-text hidden">Monthly Bill Comparison</span><span data-lang="ms" class="lang-text hidden">Perbandingan Bil Bulanan</span></div>
+            <div style="display:flex;flex-direction:column;gap:0.8rem;">
+                <div>
+                    <div style="display:flex;justify-content:space-between;font-size:0.78rem;margin-bottom:0.3rem;">
+                        <span style="color:var(--t2);"><span data-lang="zh" class="lang-text">装前</span><span data-lang="en" class="lang-text hidden">Before</span><span data-lang="ms" class="lang-text hidden">Sebelum</span></span>
+                        <span style="font-weight:700;color:#ef4444;">RM 380</span>
+                    </div>
+                    <div style="height:12px;background:#fee2e2;border-radius:99px;overflow:hidden;">
+                        <div style="height:100%;width:100%;background:#ef4444;border-radius:99px;transition:width 1.5s ease;" class="bar-fill"></div>
+                    </div>
+                </div>
+                <div>
+                    <div style="display:flex;justify-content:space-between;font-size:0.78rem;margin-bottom:0.3rem;">
+                        <span style="color:var(--t2);"><span data-lang="zh" class="lang-text">装后</span><span data-lang="en" class="lang-text hidden">After</span><span data-lang="ms" class="lang-text hidden">Selepas</span></span>
+                        <span style="font-weight:700;color:var(--g);">RM 45</span>
+                    </div>
+                    <div style="height:12px;background:#d1fae5;border-radius:99px;overflow:hidden;">
+                        <div style="height:100%;width:12%;background:var(--g);border-radius:99px;transition:width 1.5s ease;" class="bar-fill"></div>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top:1.2rem;padding:0.8rem 1rem;background:linear-gradient(135deg,var(--gl),#eff6ff);border-radius:10px;font-size:0.82rem;font-weight:700;color:var(--gd);text-align:center;">
+                💰 <span data-lang="zh" class="lang-text">10年累计节省约 RM 40,800（含 SuRIA 回扣）</span>
+                <span data-lang="en" class="lang-text hidden">10-year total savings ~RM 40,800 (including SuRIA rebate)</span>
+                <span data-lang="ms" class="lang-text hidden">Jumlah jimat 10 tahun ~RM 40,800 (termasuk rebat SuRIA)</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- INSTALLATION TIMELINE -->
+<section style="background:white;padding:5rem 1.5rem;">
+    <div style="max-width:900px;margin:0 auto;">
+        <div style="text-align:center;margin-bottom:3rem;" class="reveal">
+            <div style="display:inline-flex;align-items:center;gap:0.5rem;font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gd);background:var(--gl);padding:0.3rem 0.8rem;border-radius:99px;margin-bottom:1rem;">
+                <div style="width:5px;height:5px;border-radius:50%;background:var(--g);"></div>
+                <span data-lang="zh" class="lang-text">从咨询到收到回扣</span><span data-lang="en" class="lang-text hidden">From Consultation to Rebate</span><span data-lang="ms" class="lang-text hidden">Dari Konsultasi ke Rebat</span>
+            </div>
+            <h2 style="font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:800;color:var(--t1);letter-spacing:-0.02em;">
+                <span data-lang="zh" class="lang-text">整个流程需要多久？</span><span data-lang="en" class="lang-text hidden">How Long Does It Take?</span><span data-lang="ms" class="lang-text hidden">Berapa Lama Prosesnya?</span>
+            </h2>
+        </div>
+        <div style="position:relative;" class="reveal">
+            <!-- Timeline line -->
+            <div style="position:absolute;left:24px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--g),#3b82f6);border-radius:99px;"></div>
+            <div style="display:flex;flex-direction:column;gap:0;">
+                <!-- Step 1 -->
+                <div style="display:flex;gap:1.5rem;align-items:flex-start;padding-bottom:2rem;">
+                    <div style="width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,var(--g),var(--gd));display:flex;align-items:center;justify-content:center;font-weight:800;color:white;font-size:0.9rem;flex-shrink:0;box-shadow:0 4px 12px rgba(16,185,129,0.3);z-index:1;">1</div>
+                    <div style="background:#f8fafc;border-radius:12px;padding:1.2rem 1.5rem;flex:1;border:1px solid #e2e8f0;margin-top:0.5rem;">
+                        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.4rem;">
+                            <div style="font-weight:700;color:var(--t1);font-size:0.95rem;"><span data-lang="zh" class="lang-text">免费咨询 + 屋顶评估</span><span data-lang="en" class="lang-text hidden">Free Consultation + Roof Assessment</span><span data-lang="ms" class="lang-text hidden">Konsultasi Percuma + Penilaian Bumbung</span></div>
+                            <div style="background:var(--gl);color:var(--gd);font-size:0.7rem;font-weight:700;padding:0.2rem 0.6rem;border-radius:99px;white-space:nowrap;"><span data-lang="zh" class="lang-text">第 1 天</span><span data-lang="en" class="lang-text hidden">Day 1</span><span data-lang="ms" class="lang-text hidden">Hari 1</span></div>
+                        </div>
+                        <div style="font-size:0.83rem;color:var(--t2);"><span data-lang="zh" class="lang-text">Spower 专员上门，免费评估屋顶条件、计算最适合的系统容量。</span><span data-lang="en" class="lang-text hidden">Spower specialist visits, free roof assessment and optimal system size calculation.</span><span data-lang="ms" class="lang-text hidden">Pakar Spower datang ke rumah, penilaian bumbung percuma dan kiraan saiz sistem optimum.</span></div>
+                    </div>
+                </div>
+                <!-- Step 2 -->
+                <div style="display:flex;gap:1.5rem;align-items:flex-start;padding-bottom:2rem;">
+                    <div style="width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,var(--g),var(--gd));display:flex;align-items:center;justify-content:center;font-weight:800;color:white;font-size:0.9rem;flex-shrink:0;box-shadow:0 4px 12px rgba(16,185,129,0.3);z-index:1;">2</div>
+                    <div style="background:#f8fafc;border-radius:12px;padding:1.2rem 1.5rem;flex:1;border:1px solid #e2e8f0;margin-top:0.5rem;">
+                        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.4rem;">
+                            <div style="font-weight:700;color:var(--t1);font-size:0.95rem;"><span data-lang="zh" class="lang-text">安装太阳能系统</span><span data-lang="en" class="lang-text hidden">Solar System Installation</span><span data-lang="ms" class="lang-text hidden">Pemasangan Sistem Solar</span></div>
+                            <div style="background:var(--gl);color:var(--gd);font-size:0.7rem;font-weight:700;padding:0.2rem 0.6rem;border-radius:99px;white-space:nowrap;"><span data-lang="zh" class="lang-text">1–2 天</span><span data-lang="en" class="lang-text hidden">1–2 Days</span><span data-lang="ms" class="lang-text hidden">1–2 Hari</span></div>
+                        </div>
+                        <div style="font-size:0.83rem;color:var(--t2);"><span data-lang="zh" class="lang-text">自家技术团队完成安装，Tier 1 板材 + AP Systems 微型逆变器，品质保证。</span><span data-lang="en" class="lang-text hidden">In-house technical team completes installation. Tier 1 panels + AP Systems microinverters, quality guaranteed.</span><span data-lang="ms" class="lang-text hidden">Pasukan teknikal sendiri siapkan pemasangan. Panel Tier 1 + microinverter AP Systems, kualiti terjamin.</span></div>
+                    </div>
+                </div>
+                <!-- Step 3 -->
+                <div style="display:flex;gap:1.5rem;align-items:flex-start;padding-bottom:2rem;">
+                    <div style="width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,#3b82f6,#1d4ed8);display:flex;align-items:center;justify-content:center;font-weight:800;color:white;font-size:0.9rem;flex-shrink:0;box-shadow:0 4px 12px rgba(59,130,246,0.3);z-index:1;">3</div>
+                    <div style="background:#f8fafc;border-radius:12px;padding:1.2rem 1.5rem;flex:1;border:1px solid #e2e8f0;margin-top:0.5rem;">
+                        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.4rem;">
+                            <div style="font-weight:700;color:var(--t1);font-size:0.95rem;"><span data-lang="zh" class="lang-text">TNB 并网申请</span><span data-lang="en" class="lang-text hidden">TNB Grid Connection</span><span data-lang="ms" class="lang-text hidden">Permohonan Grid TNB</span></div>
+                            <div style="background:#eff6ff;color:#1d4ed8;font-size:0.7rem;font-weight:700;padding:0.2rem 0.6rem;border-radius:99px;white-space:nowrap;"><span data-lang="zh" class="lang-text">2–4 周</span><span data-lang="en" class="lang-text hidden">2–4 Weeks</span><span data-lang="ms" class="lang-text hidden">2–4 Minggu</span></div>
+                        </div>
+                        <div style="font-size:0.83rem;color:var(--t2);"><span data-lang="zh" class="lang-text">Spower 全程处理 TNB 文件和并网申请，无需客户操心。</span><span data-lang="en" class="lang-text hidden">Spower handles all TNB documentation and grid connection — no hassle for the customer.</span><span data-lang="ms" class="lang-text hidden">Spower urus semua dokumen TNB dan sambungan grid — tiada kerumitan untuk pelanggan.</span></div>
+                    </div>
+                </div>
+                <!-- Step 4 -->
+                <div style="display:flex;gap:1.5rem;align-items:flex-start;padding-bottom:2rem;">
+                    <div style="width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#6d28d9);display:flex;align-items:center;justify-content:center;font-weight:800;color:white;font-size:0.9rem;flex-shrink:0;box-shadow:0 4px 12px rgba(124,58,237,0.3);z-index:1;">4</div>
+                    <div style="background:#f8fafc;border-radius:12px;padding:1.2rem 1.5rem;flex:1;border:1px solid #e2e8f0;margin-top:0.5rem;">
+                        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.4rem;">
+                            <div style="font-weight:700;color:var(--t1);font-size:0.95rem;"><span data-lang="zh" class="lang-text">提交 SuRIA Home 申请</span><span data-lang="en" class="lang-text hidden">Submit SuRIA Home Application</span><span data-lang="ms" class="lang-text hidden">Hantar Permohonan SuRIA Home</span></div>
+                            <div style="background:#f5f3ff;color:#6d28d9;font-size:0.7rem;font-weight:700;padding:0.2rem 0.6rem;border-radius:99px;white-space:nowrap;"><span data-lang="zh" class="lang-text">并网后</span><span data-lang="en" class="lang-text hidden">After Grid</span><span data-lang="ms" class="lang-text hidden">Selepas Grid</span></div>
+                        </div>
+                        <div style="font-size:0.83rem;color:var(--t2);"><span data-lang="zh" class="lang-text">成功并网后，Spower 协助通过 PETRA 门户提交回扣申请，文件齐全即可。</span><span data-lang="en" class="lang-text hidden">After successful grid connection, Spower assists with rebate application via PETRA portal. All documents prepared.</span><span data-lang="ms" class="lang-text hidden">Selepas sambungan grid berjaya, Spower bantu hantar permohonan rebat melalui portal PETRA.</span></div>
+                    </div>
+                </div>
+                <!-- Step 5 -->
+                <div style="display:flex;gap:1.5rem;align-items:flex-start;">
+                    <div style="width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,#d97706,#b45309);display:flex;align-items:center;justify-content:center;font-weight:800;color:white;font-size:0.9rem;flex-shrink:0;box-shadow:0 4px 12px rgba(217,119,6,0.3);z-index:1;">5</div>
+                    <div style="background:linear-gradient(135deg,#fffbeb,#fefce8);border-radius:12px;padding:1.2rem 1.5rem;flex:1;border:2px solid #fde68a;margin-top:0.5rem;">
+                        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.4rem;">
+                            <div style="font-weight:700;color:var(--t1);font-size:0.95rem;"><span data-lang="zh" class="lang-text">💰 收到 RM3,000 回扣</span><span data-lang="en" class="lang-text hidden">💰 Receive RM3,000 Rebate</span><span data-lang="ms" class="lang-text hidden">💰 Terima Rebat RM3,000</span></div>
+                            <div style="background:#fef3c7;color:#d97706;font-size:0.7rem;font-weight:700;padding:0.2rem 0.6rem;border-radius:99px;white-space:nowrap;"><span data-lang="zh" class="lang-text">4–8 周</span><span data-lang="en" class="lang-text hidden">4–8 Weeks</span><span data-lang="ms" class="lang-text hidden">4–8 Minggu</span></div>
+                        </div>
+                        <div style="font-size:0.83rem;color:#92400e;"><span data-lang="zh" class="lang-text">审核通过后，RM3,000 直接汇入你的银行账户。从此每月电费大幅减少！</span><span data-lang="en" class="lang-text hidden">After approval, RM3,000 credited directly to your bank account. Monthly bills significantly reduced from here on!</span><span data-lang="ms" class="lang-text hidden">Selepas diluluskan, RM3,000 dikreditkan terus ke akaun bank anda. Bil bulanan berkurangan dengan ketara dari sini!</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="text-align:center;margin-top:2rem;" class="reveal">
+            <div style="display:inline-block;background:var(--gl);border:1px solid rgba(16,185,129,0.3);border-radius:12px;padding:1rem 2rem;font-size:0.88rem;color:var(--gd);font-weight:600;">
+                ⏱️ <span data-lang="zh" class="lang-text">总计约 <strong>6–10 周</strong>从咨询到收到回扣</span>
+                <span data-lang="en" class="lang-text hidden">Total ~<strong>6–10 weeks</strong> from consultation to receiving rebate</span>
+                <span data-lang="ms" class="lang-text hidden">Jumlah ~<strong>6–10 minggu</strong> dari konsultasi hingga terima rebat</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- STICKY BOTTOM CTA (mobile) -->
+<div id="stickyCta" style="position:fixed;bottom:0;left:0;right:0;background:white;border-top:1px solid #e2e8f0;padding:0.8rem 1.2rem;display:none;justify-content:space-between;align-items:center;z-index:190;box-shadow:0 -4px 20px rgba(0,0,0,0.08);">
+    <div>
+        <div style="font-size:0.78rem;font-weight:700;color:var(--t1);"><span data-lang="zh" class="lang-text">免费屋顶评估</span><span data-lang="en" class="lang-text hidden">Free Roof Assessment</span><span data-lang="ms" class="lang-text hidden">Penilaian Percuma</span></div>
+        <div style="font-size:0.7rem;color:var(--t3);"><span data-lang="zh" class="lang-text">今天咨询，配额有限</span><span data-lang="en" class="lang-text hidden">Consult today, quota limited</span><span data-lang="ms" class="lang-text hidden">Konsultasi hari ini, kuota terhad</span></div>
+    </div>
+    <a href="https://wa.me/60164017123?text=Hello%20Spower%2C%20I%20would%20like%20a%20free%20roof%20assessment" target="_blank" style="background:linear-gradient(135deg,#25d366,#128c7e);color:white;text-decoration:none;padding:0.6rem 1.2rem;border-radius:99px;font-size:0.82rem;font-weight:700;white-space:nowrap;">
+        💬 <span data-lang="zh" class="lang-text">立刻咨询</span><span data-lang="en" class="lang-text hidden">Chat Now</span><span data-lang="ms" class="lang-text hidden">Chat Sekarang</span>
+    </a>
+</div>
+
+<!-- TRUST STATS BEFORE FAQ -->
+<section style="background:linear-gradient(135deg,var(--g) 0%,#059669 50%,#0891b2 100%);padding:3.5rem 1.5rem;">
+    <div style="max-width:1100px;margin:0 auto;">
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;text-align:center;" class="reveal">
+            <div style="padding:1rem;border-right:1px solid rgba(255,255,255,0.2);">
+                <div style="font-size:2.2rem;font-weight:900;color:white;line-height:1;" class="count-num" data-target="6" data-suffix="+">6+</div>
+                <div style="font-size:0.75rem;color:rgba(255,255,255,0.75);margin-top:0.3rem;"><span data-lang="zh" class="lang-text">完工案例</span><span data-lang="en" class="lang-text hidden">Projects Done</span><span data-lang="ms" class="lang-text hidden">Projek Siap</span></div>
+            </div>
+            <div style="padding:1rem;border-right:1px solid rgba(255,255,255,0.2);">
+                <div style="font-size:2.2rem;font-weight:900;color:white;line-height:1;" class="count-num" data-target="3000" data-prefix="RM">RM3,000</div>
+                <div style="font-size:0.75rem;color:rgba(255,255,255,0.75);margin-top:0.3rem;"><span data-lang="zh" class="lang-text">最高回扣</span><span data-lang="en" class="lang-text hidden">Max Rebate</span><span data-lang="ms" class="lang-text hidden">Rebat Maks</span></div>
+            </div>
+            <div style="padding:1rem;border-right:1px solid rgba(255,255,255,0.2);">
+                <div style="font-size:2.2rem;font-weight:900;color:white;line-height:1;" class="count-num" data-target="90" data-suffix="%">90%</div>
+                <div style="font-size:0.75rem;color:rgba(255,255,255,0.75);margin-top:0.3rem;"><span data-lang="zh" class="lang-text">最高省电</span><span data-lang="en" class="lang-text hidden">Max Savings</span><span data-lang="ms" class="lang-text hidden">Jimat Maks</span></div>
+            </div>
+            <div style="padding:1rem;">
+                <div style="font-size:2.2rem;font-weight:900;color:white;line-height:1;">250</div>
+                <div style="font-size:0.75rem;color:rgba(255,255,255,0.75);margin-top:0.3rem;"><span data-lang="zh" class="lang-text">MW 全国配额</span><span data-lang="en" class="lang-text hidden">MW Nat. Quota</span><span data-lang="ms" class="lang-text hidden">MW Kuota Nasional</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <section class="sec sec-white" id="faq">
     <div class="sec-inner" style="max-width:700px;">
         <div class="label on-light"><div class="label-dot"></div>FAQ</div>
@@ -875,7 +1324,17 @@ footer{background:#000;border-top:1px solid #0a0a0a;padding:3rem 1.5rem 1.5rem;}
 
 <!-- FLOATING WA — appears mid-page -->
 <a href="https://wa.me/60164017123?text=Hello%20Spower%20Solar" class="wa" id="waBtn" target="_blank" aria-label="WhatsApp">
-    <svg viewBox="0 0 24 24" fill="white" width="25" height="25"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.849L.057 23.516a.75.75 0 00.927.927l5.668-1.471A11.944 11.944 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.718 9.718 0 01-4.964-1.358l-.356-.213-3.693.958.978-3.591-.232-.369A9.718 9.718 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
+    <div class="wa-pulse"></div>
+    <div class="wa-bubble">
+        <div class="wa-icon">
+            <svg viewBox="0 0 24 24" fill="white" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.849L.057 23.516a.75.75 0 00.927.927l5.668-1.471A11.944 11.944 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.718 9.718 0 01-4.964-1.358l-.356-.213-3.693.958.978-3.591-.232-.369A9.718 9.718 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
+        </div>
+        <span class="wa-label">
+            <span data-lang="zh" class="lang-text">免费咨询</span>
+            <span data-lang="en" class="lang-text hidden">Free Consult</span>
+            <span data-lang="ms" class="lang-text hidden">Konsultasi</span>
+        </span>
+    </div>
 </a>
 
 <script>
@@ -888,27 +1347,137 @@ function setLang(l){
         const t=e.tagName;
         e.style.display=(t==='P'||t==='DIV'||t==='LI'||t==='H1'||t==='H2'||t==='H3')?'block':'inline';
     });
-    // Update buttons
     ['zh','en','ms'].forEach(lang=>{
         const btn=document.getElementById('btn-'+lang);
         if(btn) btn.classList.toggle('active', lang===l);
     });
     localStorage.setItem('lang',l);
 }
-document.addEventListener('DOMContentLoaded',()=>setLang(getLang()));
 
-// DYNAMIC HEADER
-window.addEventListener('scroll',()=>{
-    document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50);
-    const btn=document.getElementById('waBtn');
-    if(btn){
-        const pct=window.scrollY/(document.body.scrollHeight-window.innerHeight);
-        btn.classList.toggle('show',pct>0.2);
+// SCROLL OBSERVER — reveal animations
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting){
+            entry.target.classList.add('visible');
+            // Counter animation for stat numbers
+            entry.target.querySelectorAll('.count-num').forEach(el => {
+                animateCount(el);
+            });
+        }
+    });
+}, {threshold: 0.15});
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => {
+        observer.observe(el);
+    });
+});
+
+// COUNTER ANIMATION
+function animateCount(el) {
+    if(el.dataset.counted) return;
+    el.dataset.counted = true;
+    const target = parseFloat(el.dataset.target || el.textContent.replace(/[^\d.]/g,''));
+    const suffix = el.dataset.suffix || '';
+    const prefix = el.dataset.prefix || '';
+    const duration = 1500;
+    const start = performance.now();
+    function update(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = target * eased;
+        el.textContent = prefix + (Number.isInteger(target) ? Math.round(current).toLocaleString() : current.toFixed(1)) + suffix;
+        if(progress < 1) requestAnimationFrame(update);
     }
+    requestAnimationFrame(update);
+}
+
+// SCROLL EVENTS
+// COUNTDOWN + QUOTA BAR
+function updateCountdown() {
+    const end = new Date('2026-12-31T23:59:59');
+    const diff = end - new Date();
+    if(diff <= 0) return;
+    ['cd-days2','cd-days'].forEach(id => {
+        const el = document.getElementById(id);
+        if(el) el.textContent = String(Math.floor(diff/86400000)).padStart(3,'0');
+    });
+    ['cd-hours2','cd-hours'].forEach(id => {
+        const el = document.getElementById(id);
+        if(el) el.textContent = String(Math.floor((diff%86400000)/3600000)).padStart(2,'0');
+    });
+    ['cd-mins2','cd-mins'].forEach(id => {
+        const el = document.getElementById(id);
+        if(el) el.textContent = String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+    });
+}
+updateCountdown();
+setInterval(updateCountdown, 60000);
+
+// QUOTA BAR — animate on load with realistic number
+function animateQuotaBar() {
+    const totalSlots = 55000;
+    // Simulate a realistic used number (between 60-75% to create urgency)
+    const usedPct = 67;
+    const usedSlots = Math.round(totalSlots * usedPct / 100);
+    const bar = document.getElementById('quotaBar');
+    const pctEl = document.getElementById('quotaPct');
+    const usedEl = document.getElementById('quotaUsed');
+    if(!bar) return;
+    setTimeout(() => {
+        bar.style.width = usedPct + '%';
+        if(pctEl) pctEl.textContent = usedPct + '%  已申请';
+        if(usedEl) {
+            let count = 0;
+            const target = usedSlots;
+            const step = Math.ceil(target / 60);
+            const timer = setInterval(() => {
+                count = Math.min(count + step, target);
+                usedEl.textContent = count.toLocaleString() + ' / ' + totalSlots.toLocaleString();
+                if(count >= target) clearInterval(timer);
+            }, 30);
+        }
+    }, 800);
+}
+document.addEventListener('DOMContentLoaded', () => {
+    setLang(getLang());
+    setTimeout(animateQuotaBar, 500);
+});
+
+// STICKY CTA
+function updateStickyCta() {
+    const cta = document.getElementById('stickyCta');
+    if(!cta) return;
+    const pct = window.scrollY/(document.body.scrollHeight-window.innerHeight);
+    const nearFooter = window.scrollY+window.innerHeight > document.body.scrollHeight-300;
+    cta.style.display = (pct>0.3 && !nearFooter) ? 'flex' : 'none';
+}
+
+window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.body.scrollHeight - window.innerHeight;
+    const pct = scrollTop / docHeight;
+    const progress = document.getElementById('scrollProgress');
+    if(progress) progress.style.width = (pct * 100) + '%';
+    document.querySelector('header').classList.toggle('scrolled', scrollTop > 50);
+    const backTop = document.getElementById('backTop');
+    if(backTop) backTop.classList.toggle('show', scrollTop > 400);
+    const waBtn = document.getElementById('waBtn');
+    if(waBtn) {
+        waBtn.classList.toggle('show', pct > 0.15);
+        waBtn.classList.toggle('mini', pct > 0.70);
+    }
+    updateStickyCta();
 });
 
 // FAQ
-function faq(el){const i=el.parentElement;const o=i.classList.contains('open');document.querySelectorAll('.faq-item.open').forEach(x=>x.classList.remove('open'));if(!o)i.classList.add('open');}
+function faq(el){
+    const item=el.parentElement;
+    const isOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(x=>x.classList.remove('open'));
+    if(!isOpen) item.classList.add('open');
+}
 
 // QUIZ
 let qa={},cs=1;
